@@ -210,10 +210,14 @@ async function getBet(caller_account) {
   //console.log(contract);
 
   try {
-    const { result, output } = await contract.query.getBet(caller_account, {
-      value: azero_value,
-      gasLimit,
-    }, caller_account);
+    const { result, output } = await contract.query.getBet(
+      caller_account,
+      {
+        value: azero_value,
+        gasLimit,
+      },
+      caller_account
+    );
     if (result.isOk) {
       const a = output.toHuman().Ok;
       return a;
@@ -247,13 +251,16 @@ async function play(caller_account, source, amount, bet_number, is_over) {
     caller_account,
     contract,
     value,
-    "play",
+    "betA0Core::play",
     bet_number,
     is_over
   );
-  
-  await contract.tx
-    .play({ gasLimit, value }, bet_number, is_over)
+
+  await contract.tx["betA0Core::play"](
+    { gasLimit, value },
+    bet_number,
+    is_over
+  )
     .signAndSend(
       caller_account,
       { signer: injector.signer },
@@ -352,13 +359,16 @@ async function multiPlay(caller_account, amount, bet_number, is_over) {
     caller_account.address,
     contract,
     value,
-    "play",
+    "betA0Core::play",
     bet_number,
     is_over
   );
 
-  await contract.tx
-    .play({ gasLimit, value }, bet_number, is_over)
+  await contract.tx["betA0Core::play"](
+    { gasLimit, value },
+    bet_number,
+    is_over
+  )
     .signAndSend(
       keypair,
       { signer: keypair.address },

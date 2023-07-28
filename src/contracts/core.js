@@ -1,8 +1,8 @@
 const core_contract = {
-  CONTRACT_ADDRESS: "5DMPGnCWLBfW1ZSmn64sZJuXgsGAR2GSreHR5S6aJf2cPWPg",
+  CONTRACT_ADDRESS: "5DLpvtVLGWJCCwT1PbjuMr1Ssq8o3uxgRN4JbUQK4f8YFCMu",
   CONTRACT_ABI: {
     source: {
-      hash: "0x9f2a6ced74ce641bd38bd8686955e7d1629f8a177b1025846a97136f8b418de0",
+      hash: "0x5224fe7a15f174d0c0650f8a984f2a0ad42bb908bcc0bf549061657790ef1e6e",
       language: "ink! 4.2.1",
       compiler: "rustc 1.70.0-nightly",
       build_info: {
@@ -16,7 +16,7 @@ const core_contract = {
       },
     },
     contract: {
-      name: "core_token",
+      name: "core_contract",
       version: "1.0.0",
       authors: ["bet_a0 <admin@betA0.net>"],
     },
@@ -28,56 +28,84 @@ const core_contract = {
               label: "max_bet_ratio",
               type: {
                 displayName: ["u32"],
-                type: 6,
+                type: 5,
               },
             },
             {
-              label: "psp22",
+              label: "revenue_ratio",
+              type: {
+                displayName: ["u32"],
+                type: 5,
+              },
+            },
+            {
+              label: "reward_pool",
               type: {
                 displayName: ["AccountId"],
-                type: 1,
+                type: 0,
+              },
+            },
+            {
+              label: "general_pool",
+              type: {
+                displayName: ["AccountId"],
+                type: 0,
+              },
+            },
+            {
+              label: "bet_pool",
+              type: {
+                displayName: ["AccountId"],
+                type: 0,
+              },
+            },
+            {
+              label: "bet_token_address",
+              type: {
+                displayName: ["AccountId"],
+                type: 0,
               },
             },
             {
               label: "token_ratio",
               type: {
                 displayName: ["u32"],
-                type: 6,
+                type: 5,
               },
             },
             {
               label: "min_over_number",
               type: {
                 displayName: ["u32"],
-                type: 6,
+                type: 5,
               },
             },
             {
               label: "max_over_number",
               type: {
                 displayName: ["u32"],
-                type: 6,
+                type: 5,
               },
             },
             {
               label: "min_under_number",
               type: {
                 displayName: ["u32"],
-                type: 6,
+                type: 5,
               },
             },
             {
               label: "max_under_number",
               type: {
                 displayName: ["u32"],
-                type: 6,
+                type: 5,
               },
             },
             {
               label: "admin_account",
               type: {
                 displayName: ["AccountId"],
-                type: 1,
+                type: 0,
               },
             },
           ],
@@ -96,28 +124,28 @@ const core_contract = {
       environment: {
         accountId: {
           displayName: ["AccountId"],
-          type: 1,
+          type: 0,
         },
         balance: {
           displayName: ["Balance"],
-          type: 0,
+          type: 6,
         },
         blockNumber: {
           displayName: ["BlockNumber"],
-          type: 6,
+          type: 5,
         },
         chainExtension: {
           displayName: ["ChainExtension"],
-          type: 36,
+          type: 35,
         },
         hash: {
           displayName: ["Hash"],
-          type: 34,
+          type: 33,
         },
         maxEventTopics: 4,
         timestamp: {
           displayName: ["Timestamp"],
-          type: 35,
+          type: 34,
         },
       },
       events: [
@@ -129,7 +157,7 @@ const core_contract = {
               label: "player",
               type: {
                 displayName: ["Option"],
-                type: 30,
+                type: 32,
               },
             },
             {
@@ -138,7 +166,7 @@ const core_contract = {
               label: "is_over",
               type: {
                 displayName: ["u8"],
-                type: 3,
+                type: 2,
               },
             },
             {
@@ -147,7 +175,7 @@ const core_contract = {
               label: "random_number",
               type: {
                 displayName: ["u32"],
-                type: 6,
+                type: 5,
               },
             },
             {
@@ -156,7 +184,7 @@ const core_contract = {
               label: "bet_number",
               type: {
                 displayName: ["u32"],
-                type: 6,
+                type: 5,
               },
             },
             {
@@ -165,7 +193,7 @@ const core_contract = {
               label: "bet_amount",
               type: {
                 displayName: ["Balance"],
-                type: 0,
+                type: 6,
               },
             },
             {
@@ -174,7 +202,7 @@ const core_contract = {
               label: "win_amount",
               type: {
                 displayName: ["Balance"],
-                type: 0,
+                type: 6,
               },
             },
           ],
@@ -189,7 +217,7 @@ const core_contract = {
               label: "player",
               type: {
                 displayName: ["Option"],
-                type: 30,
+                type: 32,
               },
             },
             {
@@ -198,7 +226,7 @@ const core_contract = {
               label: "is_over",
               type: {
                 displayName: ["u8"],
-                type: 3,
+                type: 2,
               },
             },
             {
@@ -207,7 +235,7 @@ const core_contract = {
               label: "random_number",
               type: {
                 displayName: ["u32"],
-                type: 6,
+                type: 5,
               },
             },
             {
@@ -216,7 +244,7 @@ const core_contract = {
               label: "bet_number",
               type: {
                 displayName: ["u32"],
-                type: 6,
+                type: 5,
               },
             },
             {
@@ -225,7 +253,7 @@ const core_contract = {
               label: "bet_amount",
               type: {
                 displayName: ["Balance"],
-                type: 0,
+                type: 6,
               },
             },
           ],
@@ -240,7 +268,7 @@ const core_contract = {
               label: "player",
               type: {
                 displayName: ["Option"],
-                type: 30,
+                type: 32,
               },
             },
             {
@@ -249,7 +277,7 @@ const core_contract = {
               label: "is_over",
               type: {
                 displayName: ["u8"],
-                type: 3,
+                type: 2,
               },
             },
             {
@@ -258,7 +286,7 @@ const core_contract = {
               label: "bet_number",
               type: {
                 displayName: ["u32"],
-                type: 6,
+                type: 5,
               },
             },
             {
@@ -267,7 +295,7 @@ const core_contract = {
               label: "bet_amount",
               type: {
                 displayName: ["Balance"],
-                type: 0,
+                type: 6,
               },
             },
           ],
@@ -299,56 +327,84 @@ const core_contract = {
               label: "max_bet_ratio",
               type: {
                 displayName: ["u32"],
-                type: 6,
+                type: 5,
               },
             },
             {
-              label: "psp22",
+              label: "revenue_ratio",
+              type: {
+                displayName: ["u32"],
+                type: 5,
+              },
+            },
+            {
+              label: "reward_pool",
               type: {
                 displayName: ["AccountId"],
-                type: 1,
+                type: 0,
+              },
+            },
+            {
+              label: "general_pool",
+              type: {
+                displayName: ["AccountId"],
+                type: 0,
+              },
+            },
+            {
+              label: "bet_pool",
+              type: {
+                displayName: ["AccountId"],
+                type: 0,
+              },
+            },
+            {
+              label: "bet_token_address",
+              type: {
+                displayName: ["AccountId"],
+                type: 0,
               },
             },
             {
               label: "token_ratio",
               type: {
                 displayName: ["u32"],
-                type: 6,
+                type: 5,
               },
             },
             {
               label: "min_over_number",
               type: {
                 displayName: ["u32"],
-                type: 6,
+                type: 5,
               },
             },
             {
               label: "max_over_number",
               type: {
                 displayName: ["u32"],
-                type: 6,
+                type: 5,
               },
             },
             {
               label: "min_under_number",
               type: {
                 displayName: ["u32"],
-                type: 6,
+                type: 5,
               },
             },
             {
               label: "max_under_number",
               type: {
                 displayName: ["u32"],
-                type: 6,
+                type: 5,
               },
             },
             {
               label: "admin_account",
               type: {
                 displayName: ["AccountId"],
-                type: 1,
+                type: 0,
               },
             },
           ],
@@ -366,17 +422,73 @@ const core_contract = {
         {
           args: [
             {
+              label: "pool",
+              type: {
+                displayName: ["AccountId"],
+                type: 0,
+              },
+            },
+            {
+              label: "amount",
+              type: {
+                displayName: ["Balance"],
+                type: 6,
+              },
+            },
+          ],
+          default: false,
+          docs: [" tranfer token to pool"],
+          label: "tranfer_token_to_pool",
+          mutates: true,
+          payable: false,
+          returnType: {
+            displayName: ["ink", "MessageResult"],
+            type: 13,
+          },
+          selector: "0xccce8410",
+        },
+        {
+          args: [
+            {
               label: "player",
               type: {
                 displayName: ["AccountId"],
-                type: 1,
+                type: 0,
               },
             },
             {
               label: "bet_amount",
               type: {
                 displayName: ["Balance"],
+                type: 6,
+              },
+            },
+          ],
+          default: false,
+          docs: [" reward token by bet pool"],
+          label: "reward_token_to_player",
+          mutates: true,
+          payable: false,
+          returnType: {
+            displayName: ["ink", "MessageResult"],
+            type: 13,
+          },
+          selector: "0xed12a862",
+        },
+        {
+          args: [
+            {
+              label: "player",
+              type: {
+                displayName: ["AccountId"],
                 type: 0,
+              },
+            },
+            {
+              label: "bet_amount",
+              type: {
+                displayName: ["Balance"],
+                type: 6,
               },
             },
           ],
@@ -397,14 +509,14 @@ const core_contract = {
               label: "player",
               type: {
                 displayName: ["AccountId"],
-                type: 1,
+                type: 0,
               },
             },
             {
               label: "random_number",
               type: {
                 displayName: ["u32"],
-                type: 6,
+                type: 5,
               },
             },
           ],
@@ -422,38 +534,10 @@ const core_contract = {
         {
           args: [
             {
-              label: "bet_number",
-              type: {
-                displayName: ["u32"],
-                type: 6,
-              },
-            },
-            {
-              label: "is_over",
-              type: {
-                displayName: ["u8"],
-                type: 3,
-              },
-            },
-          ],
-          default: false,
-          docs: [" Play"],
-          label: "play",
-          mutates: true,
-          payable: true,
-          returnType: {
-            displayName: ["ink", "MessageResult"],
-            type: 13,
-          },
-          selector: "0x9963949f",
-        },
-        {
-          args: [
-            {
               label: "value",
               type: {
                 displayName: ["Balance"],
-                type: 0,
+                type: 6,
               },
             },
           ],
@@ -474,7 +558,7 @@ const core_contract = {
               label: "value",
               type: {
                 displayName: ["Balance"],
-                type: 0,
+                type: 6,
               },
             },
           ],
@@ -495,7 +579,7 @@ const core_contract = {
               label: "code_hash",
               type: {
                 displayName: [],
-                type: 2,
+                type: 1,
               },
             },
           ],
@@ -516,14 +600,14 @@ const core_contract = {
               label: "over_rates",
               type: {
                 displayName: ["Vec"],
-                type: 5,
+                type: 4,
               },
             },
             {
               label: "under_rates",
               type: {
                 displayName: ["Vec"],
-                type: 5,
+                type: 4,
               },
             },
           ],
@@ -543,23 +627,23 @@ const core_contract = {
         {
           args: [
             {
-              label: "psp22",
+              label: "bet_token_address",
               type: {
                 displayName: ["AccountId"],
-                type: 1,
+                type: 0,
               },
             },
           ],
           default: false,
           docs: [" Set new psp22 address"],
-          label: "set_psp22",
+          label: "set_bet_token_address",
           mutates: true,
           payable: false,
           returnType: {
             displayName: ["ink", "MessageResult"],
             type: 13,
           },
-          selector: "0x4e7cef7d",
+          selector: "0xd0b1c221",
         },
         {
           args: [
@@ -567,7 +651,7 @@ const core_contract = {
               label: "token_ratio",
               type: {
                 displayName: ["u32"],
-                type: 6,
+                type: 5,
               },
             },
           ],
@@ -588,7 +672,7 @@ const core_contract = {
               label: "min_over_number",
               type: {
                 displayName: ["u32"],
-                type: 6,
+                type: 5,
               },
             },
           ],
@@ -609,7 +693,7 @@ const core_contract = {
               label: "max_over_number",
               type: {
                 displayName: ["u32"],
-                type: 6,
+                type: 5,
               },
             },
           ],
@@ -630,7 +714,7 @@ const core_contract = {
               label: "min_under_number",
               type: {
                 displayName: ["u32"],
-                type: 6,
+                type: 5,
               },
             },
           ],
@@ -651,7 +735,7 @@ const core_contract = {
               label: "max_under_number",
               type: {
                 displayName: ["u32"],
-                type: 6,
+                type: 5,
               },
             },
           ],
@@ -672,12 +756,12 @@ const core_contract = {
               label: "max_bet_ratio",
               type: {
                 displayName: ["u32"],
-                type: 6,
+                type: 5,
               },
             },
           ],
           default: false,
-          docs: [" Setters"],
+          docs: [" Set max bet ratio"],
           label: "set_max_bet_ratio",
           mutates: true,
           payable: false,
@@ -690,10 +774,94 @@ const core_contract = {
         {
           args: [
             {
+              label: "revenue_ratio",
+              type: {
+                displayName: ["u32"],
+                type: 5,
+              },
+            },
+          ],
+          default: false,
+          docs: [" Set revenue_ratio"],
+          label: "set_revenue_ratio",
+          mutates: true,
+          payable: false,
+          returnType: {
+            displayName: ["ink", "MessageResult"],
+            type: 13,
+          },
+          selector: "0xaefb9395",
+        },
+        {
+          args: [
+            {
+              label: "reward_pool",
+              type: {
+                displayName: ["AccountId"],
+                type: 0,
+              },
+            },
+          ],
+          default: false,
+          docs: [" Set reward_pool"],
+          label: "set_reward_pool",
+          mutates: true,
+          payable: false,
+          returnType: {
+            displayName: ["ink", "MessageResult"],
+            type: 13,
+          },
+          selector: "0xc66cb381",
+        },
+        {
+          args: [
+            {
+              label: "general_pool",
+              type: {
+                displayName: ["AccountId"],
+                type: 0,
+              },
+            },
+          ],
+          default: false,
+          docs: [" Set max bet ratio"],
+          label: "set_general_pool",
+          mutates: true,
+          payable: false,
+          returnType: {
+            displayName: ["ink", "MessageResult"],
+            type: 13,
+          },
+          selector: "0xb751166a",
+        },
+        {
+          args: [
+            {
+              label: "bet_pool",
+              type: {
+                displayName: ["AccountId"],
+                type: 0,
+              },
+            },
+          ],
+          default: false,
+          docs: [" Set bet_pool"],
+          label: "set_bet_pool",
+          mutates: true,
+          payable: false,
+          returnType: {
+            displayName: ["ink", "MessageResult"],
+            type: 13,
+          },
+          selector: "0xa2a7ddd7",
+        },
+        {
+          args: [
+            {
               label: "admin_account",
               type: {
                 displayName: ["AccountId"],
-                type: 1,
+                type: 0,
               },
             },
           ],
@@ -714,7 +882,7 @@ const core_contract = {
               label: "player",
               type: {
                 displayName: ["AccountId"],
-                type: 1,
+                type: 0,
               },
             },
           ],
@@ -748,7 +916,7 @@ const core_contract = {
               label: "player",
               type: {
                 displayName: ["AccountId"],
-                type: 1,
+                type: 0,
               },
             },
           ],
@@ -829,6 +997,27 @@ const core_contract = {
           selector: "0xa4afc1d6",
         },
         {
+          args: [
+            {
+              label: "pool",
+              type: {
+                displayName: ["AccountId"],
+                type: 0,
+              },
+            },
+          ],
+          default: false,
+          docs: [" get token balance pool"],
+          label: "get_token_balance_pool",
+          mutates: false,
+          payable: false,
+          returnType: {
+            displayName: ["ink", "MessageResult"],
+            type: 23,
+          },
+          selector: "0x281b142c",
+        },
+        {
           args: [],
           default: false,
           docs: [" Get token ratio"],
@@ -844,15 +1033,67 @@ const core_contract = {
         {
           args: [],
           default: false,
-          docs: [" Get psp22 address"],
-          label: "psp22",
+          docs: [" get revenue ratio"],
+          label: "get_revenue_ratio",
+          mutates: false,
+          payable: false,
+          returnType: {
+            displayName: ["ink", "MessageResult"],
+            type: 22,
+          },
+          selector: "0x1294559d",
+        },
+        {
+          args: [],
+          default: false,
+          docs: [" get reward pool"],
+          label: "get_reward_pool",
           mutates: false,
           payable: false,
           returnType: {
             displayName: ["ink", "MessageResult"],
             type: 18,
           },
-          selector: "0xb2646034",
+          selector: "0x443c6a4a",
+        },
+        {
+          args: [],
+          default: false,
+          docs: [" get general pool"],
+          label: "get_general_pool",
+          mutates: false,
+          payable: false,
+          returnType: {
+            displayName: ["ink", "MessageResult"],
+            type: 18,
+          },
+          selector: "0xeaa0d34a",
+        },
+        {
+          args: [],
+          default: false,
+          docs: [" get bet pool"],
+          label: "get_bet_pool",
+          mutates: false,
+          payable: false,
+          returnType: {
+            displayName: ["ink", "MessageResult"],
+            type: 18,
+          },
+          selector: "0x7efe15f1",
+        },
+        {
+          args: [],
+          default: false,
+          docs: [" Get psp22 address"],
+          label: "bet_token_address",
+          mutates: false,
+          payable: false,
+          returnType: {
+            displayName: ["ink", "MessageResult"],
+            type: 18,
+          },
+          selector: "0x9846dd6f",
         },
         {
           args: [],
@@ -909,307 +1150,30 @@ const core_contract = {
         {
           args: [
             {
-              label: "account",
+              label: "bet_number",
               type: {
-                displayName: ["coretoken_external", "MintInput1"],
-                type: 1,
+                displayName: ["beta0core_external", "PlayInput1"],
+                type: 5,
               },
             },
             {
-              label: "amount",
+              label: "is_over",
               type: {
-                displayName: ["coretoken_external", "MintInput2"],
-                type: 0,
+                displayName: ["beta0core_external", "PlayInput2"],
+                type: 2,
               },
             },
           ],
           default: false,
-          docs: [],
-          label: "CoreToken::mint",
+          docs: [" Play"],
+          label: "BetA0Core::play",
           mutates: true,
-          payable: false,
+          payable: true,
           returnType: {
             displayName: ["ink", "MessageResult"],
             type: 25,
           },
-          selector: "0xfb6b2527",
-        },
-        {
-          args: [
-            {
-              label: "to",
-              type: {
-                displayName: ["psp22_external", "TransferInput1"],
-                type: 1,
-              },
-            },
-            {
-              label: "value",
-              type: {
-                displayName: ["psp22_external", "TransferInput2"],
-                type: 0,
-              },
-            },
-            {
-              label: "data",
-              type: {
-                displayName: ["psp22_external", "TransferInput3"],
-                type: 28,
-              },
-            },
-          ],
-          default: false,
-          docs: [],
-          label: "PSP22::transfer",
-          mutates: true,
-          payable: false,
-          returnType: {
-            displayName: ["ink", "MessageResult"],
-            type: 25,
-          },
-          selector: "0xdb20f9f5",
-        },
-        {
-          args: [
-            {
-              label: "spender",
-              type: {
-                displayName: ["psp22_external", "DecreaseAllowanceInput1"],
-                type: 1,
-              },
-            },
-            {
-              label: "delta_value",
-              type: {
-                displayName: ["psp22_external", "DecreaseAllowanceInput2"],
-                type: 0,
-              },
-            },
-          ],
-          default: false,
-          docs: [],
-          label: "PSP22::decrease_allowance",
-          mutates: true,
-          payable: false,
-          returnType: {
-            displayName: ["ink", "MessageResult"],
-            type: 25,
-          },
-          selector: "0xfecb57d5",
-        },
-        {
-          args: [
-            {
-              label: "from",
-              type: {
-                displayName: ["psp22_external", "TransferFromInput1"],
-                type: 1,
-              },
-            },
-            {
-              label: "to",
-              type: {
-                displayName: ["psp22_external", "TransferFromInput2"],
-                type: 1,
-              },
-            },
-            {
-              label: "value",
-              type: {
-                displayName: ["psp22_external", "TransferFromInput3"],
-                type: 0,
-              },
-            },
-            {
-              label: "data",
-              type: {
-                displayName: ["psp22_external", "TransferFromInput4"],
-                type: 28,
-              },
-            },
-          ],
-          default: false,
-          docs: [],
-          label: "PSP22::transfer_from",
-          mutates: true,
-          payable: false,
-          returnType: {
-            displayName: ["ink", "MessageResult"],
-            type: 25,
-          },
-          selector: "0x54b3c76e",
-        },
-        {
-          args: [
-            {
-              label: "spender",
-              type: {
-                displayName: ["psp22_external", "IncreaseAllowanceInput1"],
-                type: 1,
-              },
-            },
-            {
-              label: "delta_value",
-              type: {
-                displayName: ["psp22_external", "IncreaseAllowanceInput2"],
-                type: 0,
-              },
-            },
-          ],
-          default: false,
-          docs: [],
-          label: "PSP22::increase_allowance",
-          mutates: true,
-          payable: false,
-          returnType: {
-            displayName: ["ink", "MessageResult"],
-            type: 25,
-          },
-          selector: "0x96d6b57a",
-        },
-        {
-          args: [
-            {
-              label: "owner",
-              type: {
-                displayName: ["psp22_external", "AllowanceInput1"],
-                type: 1,
-              },
-            },
-            {
-              label: "spender",
-              type: {
-                displayName: ["psp22_external", "AllowanceInput2"],
-                type: 1,
-              },
-            },
-          ],
-          default: false,
-          docs: [],
-          label: "PSP22::allowance",
-          mutates: false,
-          payable: false,
-          returnType: {
-            displayName: ["ink", "MessageResult"],
-            type: 23,
-          },
-          selector: "0x4d47d921",
-        },
-        {
-          args: [],
-          default: false,
-          docs: [],
-          label: "PSP22::total_supply",
-          mutates: false,
-          payable: false,
-          returnType: {
-            displayName: ["ink", "MessageResult"],
-            type: 23,
-          },
-          selector: "0x162df8c2",
-        },
-        {
-          args: [
-            {
-              label: "owner",
-              type: {
-                displayName: ["psp22_external", "BalanceOfInput1"],
-                type: 1,
-              },
-            },
-          ],
-          default: false,
-          docs: [],
-          label: "PSP22::balance_of",
-          mutates: false,
-          payable: false,
-          returnType: {
-            displayName: ["ink", "MessageResult"],
-            type: 23,
-          },
-          selector: "0x6568382f",
-        },
-        {
-          args: [
-            {
-              label: "spender",
-              type: {
-                displayName: ["psp22_external", "ApproveInput1"],
-                type: 1,
-              },
-            },
-            {
-              label: "value",
-              type: {
-                displayName: ["psp22_external", "ApproveInput2"],
-                type: 0,
-              },
-            },
-          ],
-          default: false,
-          docs: [],
-          label: "PSP22::approve",
-          mutates: true,
-          payable: false,
-          returnType: {
-            displayName: ["ink", "MessageResult"],
-            type: 25,
-          },
-          selector: "0xb20f1bbd",
-        },
-        {
-          args: [
-            {
-              label: "account",
-              type: {
-                displayName: ["psp22mintable_external", "MintInput1"],
-                type: 1,
-              },
-            },
-            {
-              label: "amount",
-              type: {
-                displayName: ["psp22mintable_external", "MintInput2"],
-                type: 0,
-              },
-            },
-          ],
-          default: false,
-          docs: [],
-          label: "PSP22Mintable::mint",
-          mutates: true,
-          payable: false,
-          returnType: {
-            displayName: ["ink", "MessageResult"],
-            type: 25,
-          },
-          selector: "0xfc3c75d4",
-        },
-        {
-          args: [],
-          default: false,
-          docs: [],
-          label: "Ownable::owner",
-          mutates: false,
-          payable: false,
-          returnType: {
-            displayName: ["ink", "MessageResult"],
-            type: 29,
-          },
-          selector: "0x4fa43c8c",
-        },
-        {
-          args: [],
-          default: false,
-          docs: [],
-          label: "Ownable::renounce_ownership",
-          mutates: true,
-          payable: false,
-          returnType: {
-            displayName: ["ink", "MessageResult"],
-            type: 31,
-          },
-          selector: "0x5e228753",
+          selector: "0x4e7b81d5",
         },
         {
           args: [
@@ -1217,7 +1181,7 @@ const core_contract = {
               label: "new_owner",
               type: {
                 displayName: ["ownable_external", "TransferOwnershipInput1"],
-                type: 1,
+                type: 0,
               },
             },
           ],
@@ -1228,9 +1192,35 @@ const core_contract = {
           payable: false,
           returnType: {
             displayName: ["ink", "MessageResult"],
-            type: 31,
+            type: 28,
           },
           selector: "0x11f43efd",
+        },
+        {
+          args: [],
+          default: false,
+          docs: [],
+          label: "Ownable::renounce_ownership",
+          mutates: true,
+          payable: false,
+          returnType: {
+            displayName: ["ink", "MessageResult"],
+            type: 28,
+          },
+          selector: "0x5e228753",
+        },
+        {
+          args: [],
+          default: false,
+          docs: [],
+          label: "Ownable::owner",
+          mutates: false,
+          payable: false,
+          returnType: {
+            displayName: ["ink", "MessageResult"],
+            type: 31,
+          },
+          selector: "0x4fa43c8c",
         },
         {
           args: [],
@@ -1260,58 +1250,6 @@ const core_contract = {
                         layout: {
                           root: {
                             layout: {
-                              leaf: {
-                                key: "0x270a8fc3",
-                                ty: 0,
-                              },
-                            },
-                            root_key: "0x270a8fc3",
-                          },
-                        },
-                        name: "supply",
-                      },
-                      {
-                        layout: {
-                          root: {
-                            layout: {
-                              leaf: {
-                                key: "0xc2664826",
-                                ty: 0,
-                              },
-                            },
-                            root_key: "0xc2664826",
-                          },
-                        },
-                        name: "balances",
-                      },
-                      {
-                        layout: {
-                          root: {
-                            layout: {
-                              leaf: {
-                                key: "0xf8d71e22",
-                                ty: 0,
-                              },
-                            },
-                            root_key: "0xf8d71e22",
-                          },
-                        },
-                        name: "allowances",
-                      },
-                    ],
-                    name: "Data",
-                  },
-                },
-                name: "psp22",
-              },
-              {
-                layout: {
-                  struct: {
-                    fields: [
-                      {
-                        layout: {
-                          root: {
-                            layout: {
                               enum: {
                                 dispatchKey: "0x6f713913",
                                 name: "Option",
@@ -1326,7 +1264,7 @@ const core_contract = {
                                         layout: {
                                           leaf: {
                                             key: "0x6f713913",
-                                            ty: 1,
+                                            ty: 0,
                                           },
                                         },
                                         name: "0",
@@ -1358,7 +1296,7 @@ const core_contract = {
                             layout: {
                               leaf: {
                                 key: "0xec3485f7",
-                                ty: 4,
+                                ty: 3,
                               },
                             },
                             root_key: "0xec3485f7",
@@ -1380,7 +1318,7 @@ const core_contract = {
                         layout: {
                           leaf: {
                             key: "0x00000000",
-                            ty: 5,
+                            ty: 4,
                           },
                         },
                         name: "over_rates",
@@ -1389,7 +1327,7 @@ const core_contract = {
                         layout: {
                           leaf: {
                             key: "0x00000000",
-                            ty: 5,
+                            ty: 4,
                           },
                         },
                         name: "under_rates",
@@ -1398,7 +1336,7 @@ const core_contract = {
                         layout: {
                           leaf: {
                             key: "0x00000000",
-                            ty: 6,
+                            ty: 5,
                           },
                         },
                         name: "max_bet_ratio",
@@ -1407,16 +1345,16 @@ const core_contract = {
                         layout: {
                           leaf: {
                             key: "0x00000000",
-                            ty: 1,
+                            ty: 0,
                           },
                         },
-                        name: "psp22",
+                        name: "bet_token_address",
                       },
                       {
                         layout: {
                           leaf: {
                             key: "0x00000000",
-                            ty: 6,
+                            ty: 5,
                           },
                         },
                         name: "token_ratio",
@@ -1430,8 +1368,8 @@ const core_contract = {
                                   {
                                     layout: {
                                       leaf: {
-                                        key: "0xcf15f5ab",
-                                        ty: 3,
+                                        key: "0xb045133d",
+                                        ty: 2,
                                       },
                                     },
                                     name: "is_over",
@@ -1439,8 +1377,8 @@ const core_contract = {
                                   {
                                     layout: {
                                       leaf: {
-                                        key: "0xcf15f5ab",
-                                        ty: 6,
+                                        key: "0xb045133d",
+                                        ty: 5,
                                       },
                                     },
                                     name: "bet_number",
@@ -1448,8 +1386,8 @@ const core_contract = {
                                   {
                                     layout: {
                                       leaf: {
-                                        key: "0xcf15f5ab",
-                                        ty: 0,
+                                        key: "0xb045133d",
+                                        ty: 6,
                                       },
                                     },
                                     name: "bet_amount",
@@ -1458,7 +1396,7 @@ const core_contract = {
                                 name: "BetInformation",
                               },
                             },
-                            root_key: "0xcf15f5ab",
+                            root_key: "0xb045133d",
                           },
                         },
                         name: "bets",
@@ -1467,10 +1405,46 @@ const core_contract = {
                         layout: {
                           leaf: {
                             key: "0x00000000",
-                            ty: 1,
+                            ty: 0,
                           },
                         },
                         name: "admin_account",
+                      },
+                      {
+                        layout: {
+                          leaf: {
+                            key: "0x00000000",
+                            ty: 5,
+                          },
+                        },
+                        name: "revenue_ratio",
+                      },
+                      {
+                        layout: {
+                          leaf: {
+                            key: "0x00000000",
+                            ty: 0,
+                          },
+                        },
+                        name: "reward_pool",
+                      },
+                      {
+                        layout: {
+                          leaf: {
+                            key: "0x00000000",
+                            ty: 0,
+                          },
+                        },
+                        name: "general_pool",
+                      },
+                      {
+                        layout: {
+                          leaf: {
+                            key: "0x00000000",
+                            ty: 0,
+                          },
+                        },
+                        name: "bet_pool",
                       },
                       {
                         layout: {
@@ -1511,7 +1485,7 @@ const core_contract = {
                 layout: {
                   leaf: {
                     key: "0x00000000",
-                    ty: 6,
+                    ty: 5,
                   },
                 },
                 name: "min_over_number",
@@ -1520,7 +1494,7 @@ const core_contract = {
                 layout: {
                   leaf: {
                     key: "0x00000000",
-                    ty: 6,
+                    ty: 5,
                   },
                 },
                 name: "max_over_number",
@@ -1529,7 +1503,7 @@ const core_contract = {
                 layout: {
                   leaf: {
                     key: "0x00000000",
-                    ty: 6,
+                    ty: 5,
                   },
                 },
                 name: "min_under_number",
@@ -1538,13 +1512,13 @@ const core_contract = {
                 layout: {
                   leaf: {
                     key: "0x00000000",
-                    ty: 6,
+                    ty: 5,
                   },
                 },
                 name: "max_under_number",
               },
             ],
-            name: "CoreTokenContract",
+            name: "CoreContract",
           },
         },
         root_key: "0x00000000",
@@ -1555,18 +1529,10 @@ const core_contract = {
         id: 0,
         type: {
           def: {
-            primitive: "u128",
-          },
-        },
-      },
-      {
-        id: 1,
-        type: {
-          def: {
             composite: {
               fields: [
                 {
-                  type: 2,
+                  type: 1,
                   typeName: "[u8; 32]",
                 },
               ],
@@ -1576,18 +1542,18 @@ const core_contract = {
         },
       },
       {
-        id: 2,
+        id: 1,
         type: {
           def: {
             array: {
               len: 32,
-              type: 3,
+              type: 2,
             },
           },
         },
       },
       {
-        id: 3,
+        id: 2,
         type: {
           def: {
             primitive: "u8",
@@ -1595,7 +1561,7 @@ const core_contract = {
         },
       },
       {
-        id: 4,
+        id: 3,
         type: {
           def: {
             primitive: "bool",
@@ -1603,12 +1569,20 @@ const core_contract = {
         },
       },
       {
-        id: 5,
+        id: 4,
         type: {
           def: {
             sequence: {
-              type: 6,
+              type: 5,
             },
+          },
+        },
+      },
+      {
+        id: 5,
+        type: {
+          def: {
+            primitive: "u32",
           },
         },
       },
@@ -1616,7 +1590,7 @@ const core_contract = {
         id: 6,
         type: {
           def: {
-            primitive: "u32",
+            primitive: "u128",
           },
         },
       },
@@ -1889,7 +1863,7 @@ const core_contract = {
               ],
             },
           },
-          path: ["core_token", "bet_a0ref", "Error"],
+          path: ["core_contract", "bet_a0", "Error"],
         },
       },
       {
@@ -1909,7 +1883,7 @@ const core_contract = {
                 {
                   fields: [
                     {
-                      type: 4,
+                      type: 3,
                     },
                   ],
                   index: 0,
@@ -1930,7 +1904,7 @@ const core_contract = {
           params: [
             {
               name: "T",
-              type: 4,
+              type: 3,
             },
             {
               name: "E",
@@ -1949,7 +1923,7 @@ const core_contract = {
                 {
                   fields: [
                     {
-                      type: 1,
+                      type: 0,
                     },
                   ],
                   index: 0,
@@ -1970,7 +1944,7 @@ const core_contract = {
           params: [
             {
               name: "T",
-              type: 1,
+              type: 0,
             },
             {
               name: "E",
@@ -2059,27 +2033,67 @@ const core_contract = {
               fields: [
                 {
                   name: "is_over",
-                  type: 3,
+                  type: 2,
                   typeName: "u8",
                 },
                 {
                   name: "bet_number",
-                  type: 6,
+                  type: 5,
                   typeName: "u32",
                 },
                 {
                   name: "bet_amount",
-                  type: 0,
+                  type: 6,
                   typeName: "Balance",
                 },
               ],
             },
           },
-          path: ["core_token", "bet_a0ref", "BetInformation"],
+          path: ["core_contract", "bet_a0", "BetInformation"],
         },
       },
       {
         id: 22,
+        type: {
+          def: {
+            variant: {
+              variants: [
+                {
+                  fields: [
+                    {
+                      type: 5,
+                    },
+                  ],
+                  index: 0,
+                  name: "Ok",
+                },
+                {
+                  fields: [
+                    {
+                      type: 9,
+                    },
+                  ],
+                  index: 1,
+                  name: "Err",
+                },
+              ],
+            },
+          },
+          params: [
+            {
+              name: "T",
+              type: 5,
+            },
+            {
+              name: "E",
+              type: 9,
+            },
+          ],
+          path: ["Result"],
+        },
+      },
+      {
+        id: 23,
         type: {
           def: {
             variant: {
@@ -2119,46 +2133,6 @@ const core_contract = {
         },
       },
       {
-        id: 23,
-        type: {
-          def: {
-            variant: {
-              variants: [
-                {
-                  fields: [
-                    {
-                      type: 0,
-                    },
-                  ],
-                  index: 0,
-                  name: "Ok",
-                },
-                {
-                  fields: [
-                    {
-                      type: 9,
-                    },
-                  ],
-                  index: 1,
-                  name: "Err",
-                },
-              ],
-            },
-          },
-          params: [
-            {
-              name: "T",
-              type: 0,
-            },
-            {
-              name: "E",
-              type: 9,
-            },
-          ],
-          path: ["Result"],
-        },
-      },
-      {
         id: 24,
         type: {
           def: {
@@ -2167,7 +2141,7 @@ const core_contract = {
                 {
                   fields: [
                     {
-                      type: 5,
+                      type: 4,
                     },
                   ],
                   index: 0,
@@ -2188,7 +2162,7 @@ const core_contract = {
           params: [
             {
               name: "T",
-              type: 5,
+              type: 4,
             },
             {
               name: "E",
@@ -2336,22 +2310,12 @@ const core_contract = {
         id: 28,
         type: {
           def: {
-            sequence: {
-              type: 3,
-            },
-          },
-        },
-      },
-      {
-        id: 29,
-        type: {
-          def: {
             variant: {
               variants: [
                 {
                   fields: [
                     {
-                      type: 30,
+                      type: 29,
                     },
                   ],
                   index: 0,
@@ -2372,11 +2336,51 @@ const core_contract = {
           params: [
             {
               name: "T",
-              type: 30,
+              type: 29,
             },
             {
               name: "E",
               type: 9,
+            },
+          ],
+          path: ["Result"],
+        },
+      },
+      {
+        id: 29,
+        type: {
+          def: {
+            variant: {
+              variants: [
+                {
+                  fields: [
+                    {
+                      type: 7,
+                    },
+                  ],
+                  index: 0,
+                  name: "Ok",
+                },
+                {
+                  fields: [
+                    {
+                      type: 30,
+                    },
+                  ],
+                  index: 1,
+                  name: "Err",
+                },
+              ],
+            },
+          },
+          params: [
+            {
+              name: "T",
+              type: 7,
+            },
+            {
+              name: "E",
+              type: 30,
             },
           ],
           path: ["Result"],
@@ -2390,27 +2394,22 @@ const core_contract = {
               variants: [
                 {
                   index: 0,
-                  name: "None",
+                  name: "CallerIsNotOwner",
                 },
                 {
-                  fields: [
-                    {
-                      type: 1,
-                    },
-                  ],
                   index: 1,
-                  name: "Some",
+                  name: "NewOwnerIsZero",
                 },
               ],
             },
           },
-          params: [
-            {
-              name: "T",
-              type: 1,
-            },
+          path: [
+            "openbrush_contracts",
+            "traits",
+            "errors",
+            "ownable",
+            "OwnableError",
           ],
-          path: ["Option"],
         },
       },
       {
@@ -2460,22 +2459,17 @@ const core_contract = {
             variant: {
               variants: [
                 {
-                  fields: [
-                    {
-                      type: 7,
-                    },
-                  ],
                   index: 0,
-                  name: "Ok",
+                  name: "None",
                 },
                 {
                   fields: [
                     {
-                      type: 33,
+                      type: 0,
                     },
                   ],
                   index: 1,
-                  name: "Err",
+                  name: "Some",
                 },
               ],
             },
@@ -2483,50 +2477,20 @@ const core_contract = {
           params: [
             {
               name: "T",
-              type: 7,
-            },
-            {
-              name: "E",
-              type: 33,
+              type: 0,
             },
           ],
-          path: ["Result"],
+          path: ["Option"],
         },
       },
       {
         id: 33,
         type: {
           def: {
-            variant: {
-              variants: [
-                {
-                  index: 0,
-                  name: "CallerIsNotOwner",
-                },
-                {
-                  index: 1,
-                  name: "NewOwnerIsZero",
-                },
-              ],
-            },
-          },
-          path: [
-            "openbrush_contracts",
-            "traits",
-            "errors",
-            "ownable",
-            "OwnableError",
-          ],
-        },
-      },
-      {
-        id: 34,
-        type: {
-          def: {
             composite: {
               fields: [
                 {
-                  type: 2,
+                  type: 1,
                   typeName: "[u8; 32]",
                 },
               ],
@@ -2536,7 +2500,7 @@ const core_contract = {
         },
       },
       {
-        id: 35,
+        id: 34,
         type: {
           def: {
             primitive: "u64",
@@ -2544,7 +2508,7 @@ const core_contract = {
         },
       },
       {
-        id: 36,
+        id: 35,
         type: {
           def: {
             variant: {},
