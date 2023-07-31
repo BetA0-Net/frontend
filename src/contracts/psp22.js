@@ -1,8 +1,8 @@
 const psp22_contract = {
-  CONTRACT_ADDRESS: "5E2DZpAW5LTFEy9RXuL4y21FDAyjxVTh72ggY1hCr47rJVda",
+  CONTRACT_ADDRESS: "5Cu9Pj9B6Hq5xGxTZWq7H52HbQ9C8ogMKKXEhStxQfFz3xAR",
   CONTRACT_ABI: {
     source: {
-      hash: "0x3dff7d78742128f5d569299ff11915db94d883bf130758fb701cfaa54c7438c8",
+      hash: "0x79e5275de39b69904ec2d77db414a9347c500839ddead30b3e3da6e2c8b6b920",
       language: "ink! 4.2.1",
       compiler: "rustc 1.70.0-nightly",
       build_info: {
@@ -206,34 +206,6 @@ const psp22_contract = {
             {
               label: "account",
               type: {
-                displayName: ["bettoken_external", "MintInput1"],
-                type: 1,
-              },
-            },
-            {
-              label: "amount",
-              type: {
-                displayName: ["bettoken_external", "MintInput2"],
-                type: 0,
-              },
-            },
-          ],
-          default: false,
-          docs: [],
-          label: "BetToken::mint",
-          mutates: true,
-          payable: false,
-          returnType: {
-            displayName: ["ink", "MessageResult"],
-            type: 13,
-          },
-          selector: "0x83a9a254",
-        },
-        {
-          args: [
-            {
-              label: "account",
-              type: {
                 displayName: ["bettoken_external", "BurnInput1"],
                 type: 1,
               },
@@ -260,79 +232,43 @@ const psp22_contract = {
         {
           args: [
             {
-              label: "owner",
+              label: "account",
               type: {
-                displayName: ["psp22_external", "BalanceOfInput1"],
-                type: 1,
-              },
-            },
-          ],
-          default: false,
-          docs: [],
-          label: "PSP22::balance_of",
-          mutates: false,
-          payable: false,
-          returnType: {
-            displayName: ["ink", "MessageResult"],
-            type: 17,
-          },
-          selector: "0x6568382f",
-        },
-        {
-          args: [
-            {
-              label: "owner",
-              type: {
-                displayName: ["psp22_external", "AllowanceInput1"],
+                displayName: ["bettoken_external", "MintInput1"],
                 type: 1,
               },
             },
             {
-              label: "spender",
+              label: "amount",
               type: {
-                displayName: ["psp22_external", "AllowanceInput2"],
-                type: 1,
-              },
-            },
-          ],
-          default: false,
-          docs: [],
-          label: "PSP22::allowance",
-          mutates: false,
-          payable: false,
-          returnType: {
-            displayName: ["ink", "MessageResult"],
-            type: 17,
-          },
-          selector: "0x4d47d921",
-        },
-        {
-          args: [
-            {
-              label: "spender",
-              type: {
-                displayName: ["psp22_external", "DecreaseAllowanceInput1"],
-                type: 1,
-              },
-            },
-            {
-              label: "delta_value",
-              type: {
-                displayName: ["psp22_external", "DecreaseAllowanceInput2"],
+                displayName: ["bettoken_external", "MintInput2"],
                 type: 0,
               },
             },
           ],
           default: false,
           docs: [],
-          label: "PSP22::decrease_allowance",
+          label: "BetToken::mint",
           mutates: true,
           payable: false,
           returnType: {
             displayName: ["ink", "MessageResult"],
             type: 13,
           },
-          selector: "0xfecb57d5",
+          selector: "0x83a9a254",
+        },
+        {
+          args: [],
+          default: false,
+          docs: [],
+          label: "PSP22::total_supply",
+          mutates: false,
+          payable: false,
+          returnType: {
+            displayName: ["ink", "MessageResult"],
+            type: 17,
+          },
+          selector: "0x162df8c2",
         },
         {
           args: [
@@ -370,45 +306,60 @@ const psp22_contract = {
           selector: "0xdb20f9f5",
         },
         {
-          args: [],
-          default: false,
-          docs: [],
-          label: "PSP22::total_supply",
-          mutates: false,
-          payable: false,
-          returnType: {
-            displayName: ["ink", "MessageResult"],
-            type: 17,
-          },
-          selector: "0x162df8c2",
-        },
-        {
           args: [
             {
               label: "spender",
               type: {
-                displayName: ["psp22_external", "ApproveInput1"],
+                displayName: ["psp22_external", "DecreaseAllowanceInput1"],
                 type: 1,
               },
             },
             {
-              label: "value",
+              label: "delta_value",
               type: {
-                displayName: ["psp22_external", "ApproveInput2"],
+                displayName: ["psp22_external", "DecreaseAllowanceInput2"],
                 type: 0,
               },
             },
           ],
           default: false,
           docs: [],
-          label: "PSP22::approve",
+          label: "PSP22::decrease_allowance",
           mutates: true,
           payable: false,
           returnType: {
             displayName: ["ink", "MessageResult"],
             type: 13,
           },
-          selector: "0xb20f1bbd",
+          selector: "0xfecb57d5",
+        },
+        {
+          args: [
+            {
+              label: "spender",
+              type: {
+                displayName: ["psp22_external", "IncreaseAllowanceInput1"],
+                type: 1,
+              },
+            },
+            {
+              label: "delta_value",
+              type: {
+                displayName: ["psp22_external", "IncreaseAllowanceInput2"],
+                type: 0,
+              },
+            },
+          ],
+          default: false,
+          docs: [],
+          label: "PSP22::increase_allowance",
+          mutates: true,
+          payable: false,
+          returnType: {
+            displayName: ["ink", "MessageResult"],
+            type: 13,
+          },
+          selector: "0x96d6b57a",
         },
         {
           args: [
@@ -455,43 +406,79 @@ const psp22_contract = {
         {
           args: [
             {
-              label: "spender",
+              label: "owner",
               type: {
-                displayName: ["psp22_external", "IncreaseAllowanceInput1"],
+                displayName: ["psp22_external", "AllowanceInput1"],
                 type: 1,
               },
             },
             {
-              label: "delta_value",
+              label: "spender",
               type: {
-                displayName: ["psp22_external", "IncreaseAllowanceInput2"],
+                displayName: ["psp22_external", "AllowanceInput2"],
+                type: 1,
+              },
+            },
+          ],
+          default: false,
+          docs: [],
+          label: "PSP22::allowance",
+          mutates: false,
+          payable: false,
+          returnType: {
+            displayName: ["ink", "MessageResult"],
+            type: 17,
+          },
+          selector: "0x4d47d921",
+        },
+        {
+          args: [
+            {
+              label: "owner",
+              type: {
+                displayName: ["psp22_external", "BalanceOfInput1"],
+                type: 1,
+              },
+            },
+          ],
+          default: false,
+          docs: [],
+          label: "PSP22::balance_of",
+          mutates: false,
+          payable: false,
+          returnType: {
+            displayName: ["ink", "MessageResult"],
+            type: 17,
+          },
+          selector: "0x6568382f",
+        },
+        {
+          args: [
+            {
+              label: "spender",
+              type: {
+                displayName: ["psp22_external", "ApproveInput1"],
+                type: 1,
+              },
+            },
+            {
+              label: "value",
+              type: {
+                displayName: ["psp22_external", "ApproveInput2"],
                 type: 0,
               },
             },
           ],
           default: false,
           docs: [],
-          label: "PSP22::increase_allowance",
+          label: "PSP22::approve",
           mutates: true,
           payable: false,
           returnType: {
             displayName: ["ink", "MessageResult"],
             type: 13,
           },
-          selector: "0x96d6b57a",
-        },
-        {
-          args: [],
-          default: false,
-          docs: [],
-          label: "PSP22Metadata::token_name",
-          mutates: false,
-          payable: false,
-          returnType: {
-            displayName: ["ink", "MessageResult"],
-            type: 19,
-          },
-          selector: "0x3d261bd4",
+          selector: "0xb20f1bbd",
         },
         {
           args: [],
@@ -518,6 +505,19 @@ const psp22_contract = {
             type: 20,
           },
           selector: "0x7271b782",
+        },
+        {
+          args: [],
+          default: false,
+          docs: [],
+          label: "PSP22Metadata::token_name",
+          mutates: false,
+          payable: false,
+          returnType: {
+            displayName: ["ink", "MessageResult"],
+            type: 19,
+          },
+          selector: "0x3d261bd4",
         },
         {
           args: [
@@ -579,14 +579,14 @@ const psp22_contract = {
           args: [],
           default: false,
           docs: [],
-          label: "Ownable::owner",
-          mutates: false,
+          label: "Ownable::renounce_ownership",
+          mutates: true,
           payable: false,
           returnType: {
             displayName: ["ink", "MessageResult"],
             type: 21,
           },
-          selector: "0x4fa43c8c",
+          selector: "0x5e228753",
         },
         {
           args: [
@@ -605,7 +605,7 @@ const psp22_contract = {
           payable: false,
           returnType: {
             displayName: ["ink", "MessageResult"],
-            type: 23,
+            type: 21,
           },
           selector: "0x11f43efd",
         },
@@ -613,14 +613,14 @@ const psp22_contract = {
           args: [],
           default: false,
           docs: [],
-          label: "Ownable::renounce_ownership",
-          mutates: true,
+          label: "Ownable::owner",
+          mutates: false,
           payable: false,
           returnType: {
             displayName: ["ink", "MessageResult"],
-            type: 23,
+            type: 24,
           },
-          selector: "0x5e228753",
+          selector: "0x4fa43c8c",
         },
         {
           args: [],
@@ -1492,77 +1492,6 @@ const psp22_contract = {
             variant: {
               variants: [
                 {
-                  index: 0,
-                  name: "None",
-                },
-                {
-                  fields: [
-                    {
-                      type: 1,
-                    },
-                  ],
-                  index: 1,
-                  name: "Some",
-                },
-              ],
-            },
-          },
-          params: [
-            {
-              name: "T",
-              type: 1,
-            },
-          ],
-          path: ["Option"],
-        },
-      },
-      {
-        id: 23,
-        type: {
-          def: {
-            variant: {
-              variants: [
-                {
-                  fields: [
-                    {
-                      type: 24,
-                    },
-                  ],
-                  index: 0,
-                  name: "Ok",
-                },
-                {
-                  fields: [
-                    {
-                      type: 9,
-                    },
-                  ],
-                  index: 1,
-                  name: "Err",
-                },
-              ],
-            },
-          },
-          params: [
-            {
-              name: "T",
-              type: 24,
-            },
-            {
-              name: "E",
-              type: 9,
-            },
-          ],
-          path: ["Result"],
-        },
-      },
-      {
-        id: 24,
-        type: {
-          def: {
-            variant: {
-              variants: [
-                {
                   fields: [
                     {
                       type: 8,
@@ -1574,7 +1503,7 @@ const psp22_contract = {
                 {
                   fields: [
                     {
-                      type: 25,
+                      type: 23,
                     },
                   ],
                   index: 1,
@@ -1590,14 +1519,14 @@ const psp22_contract = {
             },
             {
               name: "E",
-              type: 25,
+              type: 23,
             },
           ],
           path: ["Result"],
         },
       },
       {
-        id: 25,
+        id: 23,
         type: {
           def: {
             variant: {
@@ -1620,6 +1549,77 @@ const psp22_contract = {
             "ownable",
             "OwnableError",
           ],
+        },
+      },
+      {
+        id: 24,
+        type: {
+          def: {
+            variant: {
+              variants: [
+                {
+                  fields: [
+                    {
+                      type: 25,
+                    },
+                  ],
+                  index: 0,
+                  name: "Ok",
+                },
+                {
+                  fields: [
+                    {
+                      type: 9,
+                    },
+                  ],
+                  index: 1,
+                  name: "Err",
+                },
+              ],
+            },
+          },
+          params: [
+            {
+              name: "T",
+              type: 25,
+            },
+            {
+              name: "E",
+              type: 9,
+            },
+          ],
+          path: ["Result"],
+        },
+      },
+      {
+        id: 25,
+        type: {
+          def: {
+            variant: {
+              variants: [
+                {
+                  index: 0,
+                  name: "None",
+                },
+                {
+                  fields: [
+                    {
+                      type: 1,
+                    },
+                  ],
+                  index: 1,
+                  name: "Some",
+                },
+              ],
+            },
+          },
+          params: [
+            {
+              name: "T",
+              type: 1,
+            },
+          ],
+          path: ["Option"],
         },
       },
       {
