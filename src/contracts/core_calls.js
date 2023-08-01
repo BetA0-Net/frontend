@@ -30,10 +30,9 @@ async function getMinNumberOverRoll(caller_account) {
   //console.log(contract);
 
   try {
-    const { result, output } = await contract.query.getMinNumberOverRoll(
-      caller_account,
-      { value: azero_value, gasLimit }
-    );
+    const { result, output } = await contract.query[
+      "betA0CoreTrait::getMinNumberOverRoll"
+    ](caller_account, { value: azero_value, gasLimit });
     if (result.isOk) {
       //console.log(output.toHuman());
       const number = output.toHuman();
@@ -56,10 +55,9 @@ async function getMaxNumberOverRoll(caller_account) {
   //console.log(contract);
 
   try {
-    const { result, output } = await contract.query.getMaxNumberOverRoll(
-      caller_account,
-      { value: azero_value, gasLimit }
-    );
+    const { result, output } = await contract.query[
+      "betA0CoreTrait::getMaxNumberOverRoll"
+    ](caller_account, { value: azero_value, gasLimit });
     if (result.isOk) {
       //console.log(output.toHuman());
       const number = output.toHuman();
@@ -82,10 +80,9 @@ async function getMinNumberUnderRoll(caller_account) {
   //console.log(contract);
 
   try {
-    const { result, output } = await contract.query.getMinNumberUnderRoll(
-      caller_account,
-      { value: azero_value, gasLimit }
-    );
+    const { result, output } = await contract.query[
+      "betA0CoreTrait::getMinNumberUnderRoll"
+    ](caller_account, { value: azero_value, gasLimit });
     if (result.isOk) {
       //console.log(output.toHuman());
       const number = output.toHuman();
@@ -108,10 +105,9 @@ async function getMaxNumberUnderRoll(caller_account) {
   //console.log(contract);
 
   try {
-    const { result, output } = await contract.query.getMaxNumberUnderRoll(
-      caller_account,
-      { value: azero_value, gasLimit }
-    );
+    const { result, output } = await contract.query[
+      "betA0CoreTrait::getMaxNumberUnderRoll"
+    ](caller_account, { value: azero_value, gasLimit });
     if (result.isOk) {
       //console.log(output.toHuman());
       const number = output.toHuman();
@@ -134,10 +130,9 @@ async function getOverRates(caller_account) {
   //console.log(contract);
 
   try {
-    const { result, output } = await contract.query.getOverRates(
-      caller_account,
-      { value: azero_value, gasLimit }
-    );
+    const { result, output } = await contract.query[
+      "betA0CoreTrait::getOverRates"
+    ](caller_account, { value: azero_value, gasLimit });
     if (result.isOk) {
       //console.log(output.toHuman());
       return output.toHuman();
@@ -158,10 +153,9 @@ async function getUnderRates(caller_account) {
   //console.log(contract);
 
   try {
-    const { result, output } = await contract.query.getUnderRates(
-      caller_account,
-      { value: azero_value, gasLimit }
-    );
+    const { result, output } = await contract.query[
+      "betA0CoreTrait::getUnderRates"
+    ](caller_account, { value: azero_value, gasLimit });
     if (result.isOk) {
       //console.log(output.toHuman());
       return output.toHuman();
@@ -184,7 +178,9 @@ async function getMaxBet(caller_account) {
   //console.log(contract);
 
   try {
-    const { result, output } = await contract.query.getMaxBet(caller_account, {
+    const { result, output } = await contract.query[
+      "betA0CoreTrait::getMaxBet"
+    ](caller_account, {
       value: azero_value,
       gasLimit,
     });
@@ -210,7 +206,7 @@ async function getBet(caller_account) {
   //console.log(contract);
 
   try {
-    const { result, output } = await contract.query.getBet(
+    const { result, output } = await contract.query["betA0CoreTrait::getBet"](
       caller_account,
       {
         value: azero_value,
@@ -251,16 +247,12 @@ async function play(caller_account, source, amount, bet_number, is_over) {
     caller_account,
     contract,
     value,
-    "betA0Core::play",
+    "play",
     bet_number,
     is_over
   );
 
-  await contract.tx["betA0Core::play"](
-    { gasLimit, value },
-    bet_number,
-    is_over
-  )
+  await contract.tx["play"]({ gasLimit, value }, bet_number, is_over)
     .signAndSend(
       caller_account,
       { signer: injector.signer },
@@ -359,16 +351,12 @@ async function multiPlay(caller_account, amount, bet_number, is_over) {
     caller_account.address,
     contract,
     value,
-    "betA0Core::play",
+    "play",
     bet_number,
     is_over
   );
 
-  await contract.tx["betA0Core::play"](
-    { gasLimit, value },
-    bet_number,
-    is_over
-  )
+  await contract.tx["play"]({ gasLimit, value }, bet_number, is_over)
     .signAndSend(
       keypair,
       { signer: keypair.address },
