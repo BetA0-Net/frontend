@@ -2,6 +2,8 @@ import React, { useCallback, useEffect, useState } from "react";
 import "./Withdraw.css";
 import { Button, Form, Input, InputNumber, message } from "antd";
 import psp22_contract from "../../contracts/psp22_calls";
+import core from "../../contracts/core";
+import core_contract from "../../contracts/core_calls";
 import { useSelector } from "react-redux";
 import toast from "react-hot-toast";
 import { isAddress } from "@polkadot/util-crypto";
@@ -149,6 +151,62 @@ const Withdraw = () => {
     } else {
       toast.error("You need to login!");
     }
+  };
+
+  // transfer token from core contract to
+  const handleTransfer = async (account, amount) => {
+    if (isAddress(account)) {
+      try {
+        const [isOwner, balance] = await Promise.all([
+          psp22_contract.isOwner(selectedAccount),
+          psp22_contract.balanceOf(selectedAccount, core.CONTRACT_ADDRESS),
+        ]);
+
+        if (!isOwner && !balance) {
+          toast.error("Something wrong!");
+          return;
+        } else {
+          if (isOwner.Ok == selectedAccount) {
+            if (amount / 10 ** 12 <= balance) {
+              const transfer = await core_contract.tranferTokenToPool(
+                selectedAccount,
+                extensionName,
+                account,
+                amount
+              );
+
+              if (!transfer) {
+                toast.error("Something wrong!");
+                return;
+              }
+            } else toast.error("Not enough balance!");
+          } else toast.error("Caller are not the owner of the contract!");
+        }
+      } catch (e) {
+        console.log(e);
+      }
+    } else {
+      toast.error("Invalid address!");
+    }
+  };
+
+  /// on submit withdraw
+  const onTranfer = (values) => {
+    console.log("Success:", values);
+    if (selectedAccount) {
+      handleTransfer(values.acount, values.token);
+    } else {
+      toast.error("You need to login!");
+    }
+  };
+
+  const a = async () => {
+    await core_contract.tranferTokenToPool(
+      selectedAccount,
+      extensionName,
+      "5FHC8grnx32YBT8uZ38TNFPAkcYcsnEV5JE13wiTYwuevZhd",
+      1
+    );
   };
 
   return (
@@ -299,6 +357,77 @@ const Withdraw = () => {
                   >
                     <Button type="primary" htmlType="submit">
                       Set minter
+                    </Button>
+                  </Form.Item>
+                </Form>
+              </div>
+            </div>
+          </div>
+
+          {/* transfer token UI */}
+          <div className="withdraw--wrapperbox">
+            <div className="section--titlebox">
+              <h2 className="section--title">
+                <span className="colorText">Transfer Token</span>
+              </h2>
+            </div>
+            <div className="withdraw--contentbox">
+              <div className="contentbox-withdraw">
+                <Form
+                  name="basic"
+                  labelCol={{
+                    span: 8,
+                  }}
+                  wrapperCol={{
+                    span: 16,
+                  }}
+                  style={{
+                    maxWidth: 600,
+                  }}
+                  initialValues={{
+                    remember: true,
+                  }}
+                  onFinish={onTranfer}
+                  validateMessages={{
+                    required: "${label} is required!",
+                    types: {
+                      number: "${label} is not a valid number!",
+                    },
+                  }}
+                  autoComplete="off"
+                >
+                  <Form.Item
+                    label="Address"
+                    name="acount"
+                    rules={[
+                      {
+                        required: true,
+                      },
+                    ]}
+                  >
+                    <Input />
+                  </Form.Item>
+                  <Form.Item
+                    label="Bet Token"
+                    name="token"
+                    rules={[
+                      {
+                        required: true,
+                        type: "number",
+                        min: 0,
+                      },
+                    ]}
+                  >
+                    <InputNumber />
+                  </Form.Item>
+                  <Form.Item
+                    wrapperCol={{
+                      offset: 8,
+                      span: 16,
+                    }}
+                  >
+                    <Button type="primary" htmlType="submit">
+                      Transfer
                     </Button>
                   </Form.Item>
                 </Form>

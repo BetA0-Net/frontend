@@ -1,45 +1,43 @@
-
 const initialState = {
   selectedAccount: "",
   extensionName: "",
   api: null,
   overRates: [],
-  underRates: []
+  underRates: [],
 };
 
 const substrateReducer = (state = initialState, action) => {
   switch (action.type) {
     case "extensionName":
       return {
-        extensionName: state.extensionName
+        extensionName: state.extensionName,
       };
     case "setExtensionName":
       return {
         ...state,
-        extensionName: action.payload
+        extensionName: action.payload,
       };
     case "selectedAccount":
       return {
-        selectedAccount: state.selectedAccount
+        selectedAccount: state.selectedAccount,
       };
     case "setSelectedAccount":
       return {
         ...state,
-        selectedAccount: action.payload
+        selectedAccount: action.payload,
       };
     case "setAPI":
       return {
         ...state,
-        api: action.payload
+        api: action.payload,
       };
     case "API":
       return {
-        api: state.api
+        api: state.api,
       };
     default: // need this for default case
-      return state
+      return state;
   }
 };
-
 
 export default substrateReducer;

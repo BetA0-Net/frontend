@@ -9,6 +9,7 @@ import psp22_contract from "../../contracts/psp22_calls";
 import toast from "react-hot-toast";
 import useInterval from "../../hooks/useInterval";
 import { randomString, delay, randomInt } from "../../utils";
+import images from "../../constants/images";
 import { clientAPI } from "../../api/client";
 
 let overRates = [
@@ -44,7 +45,6 @@ const RoiUpdate = () => {
   const selectedAccount = useSelector((s) => s.substrate.selectedAccount);
   const extensionName = useSelector((s) => s.substrate.extensionName);
   const api = useSelector((s) => s.substrate.api);
-
   const [luckyNumber, setLuckyNumber] = useState(-1);
   const [position, setPosition] = useState(50);
   const [rollOver, setRollOver] = useState(true);
@@ -63,29 +63,29 @@ const RoiUpdate = () => {
   const [AZeroBalance, setAZeroBalance] = useState(0);
   const [BETBalance, setBETBalance] = useState(0);
   const [poolBalance, setPoolBalance] = useState(0);
+  const [rewardPoolBalance, setRewardPoolBalance] = useState(0);
+  const [generalPoolBalance, setGeneralPoolBalance] = useState(0);
+  const [generalPoolToken, setGeneralPoolToken] = useState(0);
+  const [betPoolToken, setBetPoolToken] = useState(0);
   const [is_audio_on, setAudio] = useState(true);
   const [is_autoplay_on, setAutoplay] = useState(true);
 
   // get number
   const onload = async () => {
-    const minNumberOverRoll = await core_contract.getMinNumberOverRoll(
-      selectedAccount
-    );
-    const maxNumberOverRoll = await core_contract.getMaxNumberOverRoll(
-      selectedAccount
-    );
-    const minNumberUnderRoll = await core_contract.getMinNumberUnderRoll(
-      selectedAccount
-    );
-    const maxNumberUnderRoll = await core_contract.getMaxNumberUnderRoll(
-      selectedAccount
-    );
-
-    // const maxBet = await core_contract.getMaxBet(selectedAccount);
+    const [
+      minNumberOverRoll,
+      maxNumberOverRoll,
+      minNumberUnderRoll,
+      maxNumberUnderRoll,
+    ] = await Promise.all([
+      core_contract.getMinNumberOverRoll(selectedAccount),
+      core_contract.getMaxNumberOverRoll(selectedAccount),
+      core_contract.getMinNumberUnderRoll(selectedAccount),
+      core_contract.getMaxNumberUnderRoll(selectedAccount),
+    ]);
 
     setNumberOverRoll({ min: minNumberOverRoll, max: maxNumberOverRoll });
     setNumberUnderRoll({ min: minNumberUnderRoll, max: maxNumberUnderRoll });
-    // setMaxBet(maxBet);
   };
 
   if (selectedAccount) {
@@ -179,19 +179,50 @@ const RoiUpdate = () => {
     );
     setPoolBalance(balance.free / 10 ** 12);
 
-    if (selectedAccount != "") {
-      const { _nonce, data: balance } = await api.query.system.account(
-        selectedAccount
-      );
+    try {
+      if (selectedAccount != "") {
+        const [rewardPoolAddress, generalPoolAddress, betPoolAddress] =
+          await Promise.all([
+            core_contract.getRewardPool(selectedAccount),
+            core_contract.getGeneralPool(selectedAccount),
+            core_contract.getBetPool(selectedAccount),
+          ]);
 
-      setAZeroBalance(balance.free / 10 ** 12);
+        const [
+          general_pool_bet,
+          bet_pool_bet,
+          generalPoolBalanceData,
+          rewardPoolBalanceData,
+          BET_balance,
+        ] = await Promise.all([
+          psp22_contract.balanceOf(selectedAccount, generalPoolAddress),
+          psp22_contract.balanceOf(selectedAccount, betPoolAddress),
+          rewardPoolAddress && api.query.system.account(rewardPoolAddress),
+          generalPoolAddress && api.query.system.account(generalPoolAddress),
+          psp22_contract.balanceOf(selectedAccount, selectedAccount),
+        ]);
 
-      let BET_balance = await psp22_contract.balanceOf(
-        selectedAccount,
-        selectedAccount
-      );
+        setGeneralPoolToken(general_pool_bet);
+        setBetPoolToken(bet_pool_bet);
+        setBETBalance(BET_balance);
 
-      setBETBalance(BET_balance);
+        const { _nonce, data: balance } = await api.query.system.account(
+          selectedAccount
+        );
+
+        setAZeroBalance(balance.free / 10 ** 12);
+
+        if (generalPoolBalanceData) {
+          setGeneralPoolBalance(generalPoolBalanceData.data.free / 10 ** 12);
+        }
+
+        if (rewardPoolBalanceData) {
+          setRewardPoolBalance(rewardPoolBalanceData.data.free / 10 ** 12);
+        }
+      }
+    } catch (e) {
+      console.error(e);
+      toast.error("Load balance error");
     }
   };
 
@@ -358,9 +389,56 @@ const RoiUpdate = () => {
                 <span>{poolBalance.toFixed(3)}</span>
               </p>
             </div>
+
+            <div className="feature--card-item">
+              <h6 className="title">Reward Pool</h6>
+              <p className="poolBalance">
+                <span>{rewardPoolBalance.toFixed(3)}</span>{" "}
+                <span className="typeBalance">Azero</span>
+              </p>
+              <p className="poolBalance">
+                <span
+                  style={{
+                    fontSize: "72px",
+                  }}
+                >
+                  -
+                </span>
+              </p>
+            </div>
+
+            <div className="feature--card-item">
+              <h6 className="title">General Pool</h6>
+              <p className="poolBalance">
+                <span>{generalPoolToken.toFixed(3)}</span>{" "}
+                <span className="typeBalance">BET</span>
+              </p>
+              <p className="poolBalance">
+                <span>{generalPoolBalance.toFixed(3)}</span>{" "}
+                <span className="typeBalance">Azero</span>
+              </p>
+            </div>
+
+            <div className="feature--card-item">
+              <h6 className="title">Bet Pool</h6>
+              <p className="poolBalance">
+                <span>{betPoolToken.toFixed(3)}</span>{" "}
+                <span className="typeBalance">BET</span>
+              </p>
+              <p className="poolBalance">
+                <span
+                  style={{
+                    fontSize: "72px",
+                  }}
+                >
+                  -
+                </span>
+              </p>
+            </div>
           </div>
         </div>
       </div>
+
       <div className="ROI--section">
         <div className="custom--container">
           <div className="ROI--wrapper">

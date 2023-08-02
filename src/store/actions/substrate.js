@@ -1,20 +1,19 @@
-
 export const selectedAccount = {
   type: "selectedAccount",
-  payload: ""
+  payload: "",
 };
 
 export const setSelectedAccount = {
   type: "setSelectedAccount",
-  payload: ""
+  payload: "",
 };
 
 export const setAPI = {
   type: "setAPI",
-  payload: null
+  payload: null,
 };
 
 export const api = {
   type: "API",
-  payload: null
+  payload: null,
 };

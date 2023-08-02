@@ -6,6 +6,25 @@
   width: 50%;
 }
 
+.poolBalance {
+  background: linear-gradient(66.9deg, #00ed53 7.65%, #ff0088b7 91.86%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+  text-shadow: 0px 0px 12px rgba(0, 210, 239, 0.5);
+  font-family: var(--font-alt);
+  font-style: normal;
+  font-weight: 600;
+  font-size: 25px;
+  line-height: 48px;
+}
+
+.poolBalance .typeBalance{
+  font-size: 20px;
+  font-weight: 500;
+}
+
 /* Clear floats after the columns */
 .rowSetting:after {
   content: "";
@@ -83,6 +102,7 @@ input:checked + .sliderAudio:before {
   grid-gap: 30px;
 }
 .feature--card-item {
+  min-height: 220px;
   position: relative;
   background: rgba(26, 29, 30, 0.6);
   border-radius: 15px;
@@ -486,7 +506,8 @@ input:checked + .sliderAudio:before {
     width: max-content;
   }
 
-  .ROI--rangebox .ROI--range-head .ROI--range-headItemsUnder, .ROI--rangebox .ROI--range-head .ROI--range-headItemsOver{
+  .ROI--rangebox .ROI--range-head .ROI--range-headItemsUnder,
+  .ROI--rangebox .ROI--range-head .ROI--range-headItemsOver {
     font-weight: 400;
     font-size: 24px;
     line-height: 30px;

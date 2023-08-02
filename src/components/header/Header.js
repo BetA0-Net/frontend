@@ -14,7 +14,12 @@ import { ApiPromise, WsProvider } from "@polkadot/api";
 import { web3Accounts, web3Enable } from "../../wallets/extension-dapp";
 import { keyring as Keyring } from "@polkadot/ui-keyring";
 
-import { setCoreContract } from "../../contracts/core_calls";
+import {
+  setCoreContract,
+  getRewardPool,
+  getGeneralPool,
+  getBetPool,
+} from "../../contracts/core_calls";
 import core_contract from "../../contracts/core";
 import psp22, { setPSP22Contract } from "../../contracts/psp22_calls";
 import psp22_contract from "../../contracts/psp22";
@@ -111,6 +116,7 @@ function Header() {
       provider,
       rpc: jsonrpc,
     });
+
     _api.on("connected", () => {
       _api.isReady.then((_api) => {
         toast("Connected to AZero network");
@@ -158,6 +164,7 @@ function Header() {
     dispatch({ type: "setSelectedAccount", payload: account });
     //console.log(selectedAccountRedux);
   };
+
   const onDisconnect = () => {
     setSelectedAccount("");
     setSelectedWallet(null);

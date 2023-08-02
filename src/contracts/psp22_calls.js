@@ -240,13 +240,91 @@ async function setMinter(caller_account, source, account) {
   return unsubscribe;
 }
 
+// allowance
+async function allowance(caller_account, owner, spender) {
+  if (!contract || !caller_account) {
+    return null;
+  }
+
+  const gasLimit = readOnlyGasLimit(contract);
+
+  const azero_value = 0;
+
+  try {
+    const { result, output } = await contract.query["psp22::allowance"](
+      caller_account,
+      { value: azero_value, gasLimit },
+      owner,
+      spender
+    );
+    if (result.isOk) {
+      return output.toHuman();
+    }
+  } catch (e) {
+    console.log(e);
+    return null;
+  }
+}
+
+// transfer form
+async function transferFrom(caller_account, source, from, to, amount) {
+  if (!contract || !caller_account) {
+    return null;
+  }
+
+  let unsubscribe;
+  let gasLimit;
+
+  const value = 0;
+  const injector = await web3FromSource(source);
+  gasLimit = await getEstimatedGas(
+    caller_account,
+    contract,
+    value,
+    "psp22::transferFrom",
+    from,
+    to,
+    amount
+  );
+
+  await contract.tx["psp22::transferFrom"](
+    { gasLimit, value },
+    from,
+    to,
+    amount
+  )
+    .signAndSend(
+      caller_account,
+      { signer: injector.signer },
+      async ({ status, dispatchError }) => {
+        if (dispatchError) {
+          if (dispatchError.isModule) {
+            toast.error(`There is some error with your request`);
+          } else {
+            console.log("dispatchError", dispatchError.toString());
+          }
+        }
+
+        if (status) {
+          const statusText = Object.keys(status.toHuman())[0];
+          if (statusText === "0") toast.success(`Set minter ...`);
+        }
+      }
+    )
+    .then((unsub) => (unsubscribe = unsub))
+    .catch((e) => console.log("e", e));
+  return unsubscribe;
+}
+
 const contract_calls = {
   balanceOf,
   withdraw,
   isOwner,
   changeState,
   pausable,
-  setMinter
+  setMinter,
+  allowance,
+  transferFrom
 };
 
 export default contract_calls;

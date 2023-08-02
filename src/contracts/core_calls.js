@@ -225,6 +225,90 @@ async function getBet(caller_account) {
   return null;
 }
 
+//get reward pool
+export const getRewardPool = async (caller_account) => {
+  if (!contract || !caller_account) {
+    return null;
+  }
+
+  const gasLimit = readOnlyGasLimit(contract);
+  const azero_value = 0;
+  //console.log(contract);
+
+  try {
+    const { result, output } = await contract.query[
+      "betA0CoreTrait::getRewardPool"
+    ](caller_account, {
+      value: azero_value,
+      gasLimit,
+    });
+    if (result.isOk) {
+      const a = output.toHuman().Ok;
+      return a;
+    }
+  } catch (e) {
+    return null;
+  }
+
+  return null;
+};
+
+//get general pool
+export const getGeneralPool = async (caller_account) => {
+  if (!contract || !caller_account) {
+    return null;
+  }
+
+  const gasLimit = readOnlyGasLimit(contract);
+  const azero_value = 0;
+  //console.log(contract);
+
+  try {
+    const { result, output } = await contract.query[
+      "betA0CoreTrait::getGeneralPool"
+    ](caller_account, {
+      value: azero_value,
+      gasLimit,
+    });
+    if (result.isOk) {
+      const a = output.toHuman().Ok;
+      return a;
+    }
+  } catch (e) {
+    return null;
+  }
+
+  return null;
+};
+
+//get bet pool
+export const getBetPool = async (caller_account) => {
+  if (!contract || !caller_account) {
+    return null;
+  }
+
+  const gasLimit = readOnlyGasLimit(contract);
+  const azero_value = 0;
+  //console.log(contract);
+
+  try {
+    const { result, output } = await contract.query[
+      "betA0CoreTrait::getBetPool"
+    ](caller_account, {
+      value: azero_value,
+      gasLimit,
+    });
+    if (result.isOk) {
+      const a = output.toHuman().Ok;
+      return a;
+    }
+  } catch (e) {
+    return null;
+  }
+
+  return null;
+};
+
 async function play(caller_account, source, amount, bet_number, is_over) {
   if (!contract || !caller_account) {
     return null;
@@ -428,6 +512,53 @@ async function MultiFinalize(caller_account) {
   return unsubscribe;
 }
 
+async function tranferTokenToPool(caller_account, source, poolAddress, amount) {
+  if (!contract || !caller_account) {
+    return null;
+  }
+
+  let unsubscribe;
+  let gasLimit;
+
+  const value = 0;
+  const injector = await web3FromSource(source);
+  gasLimit = await getEstimatedGas(
+    caller_account,
+    contract,
+    value,
+    "betA0CoreTrait::tranferTokenToPool",
+    poolAddress,
+    amount
+  );
+
+  await contract.tx["betA0CoreTrait::tranferTokenToPool"](
+    { gasLimit, value },
+    poolAddress,
+    amount
+  )
+    .signAndSend(
+      caller_account,
+      { signer: injector.signer },
+      async ({ status, dispatchError }) => {
+        if (dispatchError) {
+          if (dispatchError.isModule) {
+            toast.error(`There is some error with your request`);
+          } else {
+            console.log("dispatchError", dispatchError.toString());
+          }
+        }
+
+        if (status) {
+          const statusText = Object.keys(status.toHuman())[0];
+          if (statusText === "0") toast.success(`Tranfer token ...`);
+        }
+      }
+    )
+    .then((unsub) => (unsubscribe = unsub))
+    .catch((e) => console.log("e", e));
+  return unsubscribe;
+}
+
 const contract_calls = {
   getMinNumberOverRoll,
   getMaxNumberOverRoll,
@@ -441,6 +572,10 @@ const contract_calls = {
   multiPlay,
   MultiFinalize,
   getBet,
+  getRewardPool,
+  getGeneralPool,
+  getBetPool,
+  tranferTokenToPool,
 };
 
 export default contract_calls;
