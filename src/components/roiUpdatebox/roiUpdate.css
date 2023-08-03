@@ -7,7 +7,7 @@
 }
 
 .poolBalance {
-  background: linear-gradient(66.9deg, #00ed53 7.65%, #ff0088b7 91.86%);
+  background: linear-gradient(66.9deg, #00edc1 7.65%, #ff0088b7 91.86%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -16,13 +16,14 @@
   font-family: var(--font-alt);
   font-style: normal;
   font-weight: 600;
-  font-size: 25px;
+  font-size: 32px;
   line-height: 48px;
 }
 
 .poolBalance .typeBalance{
   font-size: 20px;
   font-weight: 500;
+  vertical-align: text-top;
 }
 
 /* Clear floats after the columns */

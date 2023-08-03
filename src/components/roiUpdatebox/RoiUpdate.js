@@ -394,7 +394,12 @@ const RoiUpdate = () => {
               <h6 className="title">Reward Pool</h6>
               <p className="poolBalance">
                 <span>{rewardPoolBalance.toFixed(3)}</span>{" "}
-                <span className="typeBalance">Azero</span>
+                <img
+                  className="icon--azero"
+                  src={images.azero_icon}
+                  width="18px"
+                  alt="AZERO"
+                />
               </p>
               <p className="poolBalance">
                 <span
@@ -410,12 +415,17 @@ const RoiUpdate = () => {
             <div className="feature--card-item">
               <h6 className="title">General Pool</h6>
               <p className="poolBalance">
-                <span>{generalPoolToken.toFixed(3)}</span>{" "}
+                <span>{generalPoolToken.toFixed(3)} </span>
                 <span className="typeBalance">BET</span>
               </p>
               <p className="poolBalance">
                 <span>{generalPoolBalance.toFixed(3)}</span>{" "}
-                <span className="typeBalance">Azero</span>
+                <img
+                  className="icon--azero"
+                  src={images.azero_icon}
+                  width="18px"
+                  alt="AZERO"
+                />
               </p>
             </div>
 
